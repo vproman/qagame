@@ -1,0 +1,30 @@
+﻿<UserControl
+    x:Class="QAGame.About.Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:QAGame.About"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Loaded="Settings_Loaded" Unloaded="Settings_Unloaded"
+    x:Name="MySettings"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    
+    <StackPanel Orientation="Vertical">
+        <ToggleSwitch IsOn="{Binding Source={StaticResource appSettings}, Path=SettingBoolean, Mode=TwoWay}"
+                                    Header="Boolean description"/>
+        <ComboBox Header="Enum description"
+                        ItemsSource="{Binding Source={StaticResource appSettings}, Path=AllSettingEnums}"
+                        SelectedItem="{Binding Source={StaticResource appSettings}, Path=SettingEnum, Mode=TwoWay}"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Slider Minimum="0" Maximum="10" Header="Integer description"
+                                Value="{Binding Source={StaticResource appSettings}, Path=SettingInteger, Mode=TwoWay}"/>
+            <TextBlock x:Name="IntegerSettingText" Grid.Column="1" FontSize="20" Margin="{Binding Path=SettingIntegerTextMargin, ElementName=MySettings}"/>
+        </Grid>
+    </StackPanel>
+</UserControl>

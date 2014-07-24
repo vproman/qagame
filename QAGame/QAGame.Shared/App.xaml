@@ -1,0 +1,16 @@
+﻿<Application
+    x:Class="QAGame.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:QAGame"
+    xmlns:appmodel="using:QAGame.Model">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- http://mattisenhower.com/2014/05/16/universal-xaml-resources/ -->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/AppResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <appmodel:UserSettings x:Key="appSettings"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

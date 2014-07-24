@@ -1,0 +1,177 @@
+﻿<Page
+    x:Class="QAGame.ItemPage"
+    DataContext="{Binding DefaultViewModel.Item, RelativeSource={RelativeSource Self}}"
+    d:DataContext="{Binding Groups[0].Items[0], Source={d:DesignData Source=../QAGame.Shared/DataModel/SampleData.json, Type=data:SampleDataSource}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:QAGame"
+    xmlns:data="using:QAGame.Data"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <ContinuumNavigationTransitionInfo></ContinuumNavigationTransitionInfo>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Storyboard x:Name="FirstRunFirstShowStoryboard">
+                <DoubleAnimation
+                    Storyboard.TargetName="FirstRunFirst"
+                    Storyboard.TargetProperty="Opacity"
+                    From="0.0" To="1.0" Duration="0:0:0.5"
+                    AutoReverse="False"/>
+            </Storyboard>
+            <Storyboard x:Name="FirstRunFirstHideStoryboard">
+                <DoubleAnimation
+                    Storyboard.TargetName="FirstRunFirst"
+                    Storyboard.TargetProperty="Opacity"
+                    From="1.0" To="0.0" Duration="0:0:0.5"
+                    AutoReverse="False"
+                    Completed="HideWhenDone"/>
+            </Storyboard>
+            <Storyboard x:Name="FirstRunLastShowStoryboard">
+                <DoubleAnimation
+                    Storyboard.TargetName="FirstRunLast"
+                    Storyboard.TargetProperty="Opacity"
+                    From="0.0" To="1.0" Duration="0:0:0.5"
+                    AutoReverse="False"/>
+            </Storyboard>
+            <Storyboard x:Name="FirstRunLastHighlightStoryboard">
+                <ColorAnimation
+                        Storyboard.TargetName="TitleTextPanel"
+                        Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
+                        From="Transparent"
+                        To="ForestGreen" Duration="0:0:1.5"
+                        RepeatBehavior="Forever"
+                        AutoReverse="True">
+                    <ColorAnimation.EasingFunction>
+                        <BounceEase Bounces="2" Bounciness="1" EasingMode="EaseIn"/>
+                    </ColorAnimation.EasingFunction>
+                </ColorAnimation>
+            </Storyboard>
+            <Storyboard x:Name="FirstRunLastHideStoryboard">
+                <DoubleAnimation
+                    Storyboard.TargetName="FirstRunLast"
+                    Storyboard.TargetProperty="Opacity"
+                    From="1.0" To="0.0" Duration="0:0:0.5"
+                    AutoReverse="False"
+                    Completed="HideWhenDone"/>
+            </Storyboard>
+        </Grid.Resources>
+        <Canvas x:Name="FirstRunCanvas"
+                Grid.RowSpan="2"
+                Visibility="Collapsed"
+                Opacity="0.8"
+                Background="Transparent"
+                Canvas.ZIndex="100"
+                Tapped="FirstRunCanvas_Tapped"
+                >
+            <Canvas x:Name="FirstRunFirst"
+                    Visibility="Collapsed"
+                    Canvas.Left="10"
+                    Canvas.Top="150"
+                    Opacity="1.0"
+                    Background="White"
+                    Canvas.ZIndex="101"
+                    Width="330"
+                    Height="250">
+                <Border BorderThickness="2"
+                        BorderBrush="Black"
+                        Width="330"
+                        Height="250"/>
+                <TextBlock
+                        TextWrapping="Wrap"
+                        FontSize="26"
+                        Margin="10,0,10,0"
+                        Width="310"
+                        Foreground="Black"
+                        Text="Here is the item detail page."/>
+                <Button
+                    Canvas.Top="150"
+                    Margin="50,0,10,0"
+                    Width="220"
+                    FontSize="26"
+                    Foreground="Black"
+                    BorderBrush="Black"
+                    Content="Dismiss tutorial"
+                    Tapped="DismissTutorial"/>
+                <TextBlock
+                        Canvas.Top="200"
+                        TextWrapping="Wrap"
+                        Margin="10,0,10,0"
+                        Width="320"
+                        FontSize="26"
+                        Foreground="Black"
+                        Text="Tap anywhere to continue..."/>
+            </Canvas>
+            <Canvas x:Name="FirstRunLast"
+                    Visibility="Collapsed"
+                    Canvas.Left="10"
+                    Canvas.Top="150"
+                    Opacity="1.0"
+                    Background="White"
+                    Canvas.ZIndex="101"
+                    Width="330"
+                    Height="250">
+                <Border BorderThickness="2"
+                        BorderBrush="Black"
+                        Width="330"
+                        Height="250"/>
+                <TextBlock
+                        TextWrapping="Wrap"
+                        FontSize="26"
+                        Margin="10,0,10,0"
+                        Width="310"
+                        Foreground="Black"
+                        Text="This uses a storyboard to make an element change color. Nothing more to say here - let's go back to the main screen!"/>
+                <Button
+                    Canvas.Top="150"
+                    Margin="50,0,10,0"
+                    Width="220"
+                    FontSize="26"
+                    Foreground="Black"
+                    BorderBrush="Black"
+                    Content="Dismiss tutorial"
+                    Tapped="DismissTutorial"/>
+                <TextBlock
+                        Canvas.Top="200"
+                        TextWrapping="Wrap"
+                        Margin="10,0,10,0"
+                        Width="320"
+                        FontSize="26"
+                        Foreground="Black"
+                        Text="Tap anywhere to continue..."/>
+            </Canvas>
+        </Canvas>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0" x:Name="TitleTextPanel" Background="Transparent">
+            <TextBlock x:Uid="Header" Text="application name" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0" />
+            <TextBlock Text="{Binding Title}" Style="{ThemeResource HeaderTextBlockStyle}" Margin="0,-6.5,0,26.5" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        </StackPanel>
+
+        <!--TODO: Content should be placed within the following grid 
+                  to show details for the current item -->
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+
+        </Grid>
+    </Grid>
+</Page>

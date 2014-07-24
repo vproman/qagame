@@ -1,0 +1,34 @@
+﻿<UserControl
+    x:Class="QAGame.About.OtherAppsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:QAGame.About"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    x:Name="MyOtherAppsPage">
+    
+    <ScrollViewer>
+        <ListView Background="Transparent" SelectionMode="None">
+            <ListView.Items>
+                <!-- TODOABOUT - put other apps here.
+                      Be sure to put either a WindowsPhoneAppId or a WindowsPackageFamilyName
+                      You can put both if it's a universal app!
+                      To find a Windows Phone app's ID, look at the Windows Phone Dev Center dashboard, under the Details section of the app 
+                      To find a Windows app's package family name, see http://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh974767.aspx -->
+                <local:OtherApp
+                                    SharedLargerSize="{Binding Path=SharedLargerSize, ElementName=MyOtherAppsPage}"
+                                    SharedNormalSize="{Binding Path=SharedNormalSize, ElementName=MyOtherAppsPage}"
+                                    PhoneFontFamilySemiBold="{Binding Path=PhoneFontFamilySemiBold, ElementName=MyOtherAppsPage}"
+                                    AppTitle="Marriage Map"
+                                    AppDescription="See the legal status of same-sex marriage across the United States."
+                                    ImageSrc="ms-appx:///images/otherapps/MarriageMap99.png"
+                                    WindowsPhoneAppId="07d33830-0e19-42b9-b371-abed7f1fcebe"
+                                    WindowsPackageFamilyName="57039gregstoll.com.MarriageMap_mrfc7nnpdd326"/>                
+            </ListView.Items>
+        </ListView>
+    </ScrollViewer>
+
+</UserControl>

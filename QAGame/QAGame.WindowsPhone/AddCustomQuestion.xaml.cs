@@ -1,10 +1,10 @@
 ﻿using QAGame.Common;
-using QAGame.Data;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using QAGame.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
@@ -24,26 +24,22 @@ namespace QAGame
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SelectAnswer : Page
+    public sealed partial class AddCustomQuestion : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private AddCustomQuestionViewModel viewModel;
 
-        public SelectAnswer()
+        public AddCustomQuestion()
         {
             this.InitializeComponent();
-
-            DataContext = new SelectAnswerViewModel()
-            {
-                Question = "What is your favorite color?",
-                Answers = new List<string> {
-                    "Red", "Blue", "Green", "Yellow"
-                }
-            };
 
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+
+            this.viewModel = new AddCustomQuestionViewModel();
+            this.DataContext = this.viewModel;
         }
 
         /// <summary>
